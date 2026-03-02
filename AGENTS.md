@@ -94,6 +94,9 @@ EV/Revenue
 EV/EBITDA
 EV/FCF
 
+number of employees
+revenue / employee
+
 Current stock price
 52 week range
 
@@ -103,8 +106,8 @@ Review business news, company announcements, and industry analysis on the compan
 
 
 9. Price catalyst
-Identify the top 3 potential price catalysts, up or down, for the stock in the next 12 months. 
-Identify the most likely potential acquirer and the reasons why it might be acquired. Estimate a likelihood of a transaction happening with jusitifcation. 
+Identify the 3 most likely material price catalysts (with probablities), up or down, for the stock in the next 12 month. The catalyst should be what drives the financial measures, e.g. technology breakthough that accelerates recenue growth, as opposed to just stating "accelerating recenue growth".
+Identify the most likely potential acquirer(s) and the reasons why it might be acquired. Estimate a likelihood of a transaction happening with jusitifcation. 
 
 
 10. Footnotes and sources. 
