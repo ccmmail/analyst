@@ -118,10 +118,11 @@ Where referenced in the sections above, footnotes with titles/publisher/dates/li
 
 ## Repo structure
 analyst/
-  <investment name>/
-     report_<investment>_<date>.md
-     <supporting analysis>
-     <reference materials>
+    notes/
+        <investment name>/
+            report_<investment>_<date>.md
+            <supporting analysis>
+            <reference materials>
 
 notes:
 - <reference materials> contains documents that you should reference in addition to other research that you conduct
