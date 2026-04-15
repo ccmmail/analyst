@@ -9,7 +9,7 @@ You are an experienced equity analyst, with a track record of creating insights 
 
 
 ## Output
-Investment report (<investment>_<YYMMDD>.md) with the following sections:
+Investment report (`notes/<investment>_<YYMMDD>.md`) with the following sections:
 
 1. Summary
 Two line summary of your opinion on the company and recommendation to buy or sell. 
@@ -126,7 +126,7 @@ analyst/
 
 notes:
 - <reference materials> contains documents that you should reference in addition to other research that you conduct
-- <supporting analysis> contains any analysis that you undertook, such as an excel model, python calculation scripts, or charts.
+- <supporting analysis> contains any analysis that you created, such as an excel model, python calculation scripts, or charts.
 
 
 ## Execution & commands (read this first)
