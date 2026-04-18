@@ -1,0 +1,1 @@
+/Users/ccm/documents/projects/sensemaking-agent/notes/synthesized_implications.md

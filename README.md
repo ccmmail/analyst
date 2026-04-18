@@ -1,61 +1,79 @@
 # Equity Analyst
 
-A research agent for building rigorous, source-backed equity investment memos.
+A source-backed equity research repo organized around reusable Codex skills.
 
-This repo is designed for company deep dives that combine business analysis, financial modeling, valuation, and recent-development tracking into a single investment view. The goal is not just to summarize a company, but to produce an actual opinion that is useful for an investor.
+This repo is for producing actual investing work: company memos, supporting analysis, saved source material, and public-market name generation from higher-level hypotheses. The goal is not to summarize companies, but to produce decision-useful views with clear evidence, explicit assumptions, and traceable sources.
 
-## What this repo is for
+## How it works now
 
-Use this repo when you want to:
-- evaluate a public or private company as a potential investment
-- refresh a thesis after earnings, news, or strategic changes
-- compare a company against key competitors
-- build a structured memo with supporting analysis and source materials
+The workflow has been refactored from a single agent prompt into task-specific skills under `.agents/skills/`.
 
-The expected output is a written investment report plus whatever supporting work is needed to justify it, such as models, charts, decomposition tables, and saved reference documents.
+- `AGENTS.md` defines the analyst behavior, sourcing standards, and repo conventions.
+- `.agents/skills/create-investment-memo/SKILL.md` defines the company memo workflow.
+- `.agents/skills/generate-names-from-hypotheses/SKILL.md` defines the hypothesis-to-names workflow.
 
-## What the agent is expected to do
+## Skills
 
-The agent should behave like a strong equity analyst:
-- form a clear buy / sell / neutral view
-- support conclusions with evidence
-- be explicit about assumptions and uncertainty
-- compare the view against consensus when relevant
-- be willing to make a contrarian call if the facts support it
+### `create-investment-memo`
 
-The detailed behavioral and output specification lives in `AGENTS.md`.
+Use this skill to build a company investment memo.
+
+- Output: `notes/<company>/report_<company>_<date>.md`
+- Purpose: produce a full writeup covering summary, company overview, revenue and margin decomposition, financials, management and investors, valuation, recent developments, catalysts, and sources
+- Inputs: company research conducted by the agent plus any reference materials you add to the repo
+
+### `generate-names`
+
+Use this skill to turn active hypotheses into investable public-market expressions.
+
+- Input: `notes/synthesized_implications.md`
+- Scope: reads the `Active hypotheses` section only
+- Output: `notes/names.md`
+- Purpose: generate candidate `Long`, `Short`, and `Underweight/Avoid` names with explicit transmission mechanisms and company-specific rationale
 
 ## Typical workflow
 
-1. Pick a target company and define the core investment question.
-2. The agent will do its own research, but also reference additional materials such as industry research that you provide it. 
-3. Run agent to get an investment memo
+1. Maintain top-down views in `notes/synthesized_implications.md`.
+2. Run `generate-names` to convert active hypotheses into candidate public-market names in `notes/names.md`.
+3. Pick a target company and run `create-investment-memo`.
+4. Save any models, charts, scripts, or source documents alongside the company note.
 
 ## Repo structure
 
 ```text
-analyst/
-  <investment_name>/
-    report_<investment>_<date>.md
+.agents/
+  skills/
+    create-investment-memo/
+    generate-names-from-hypotheses/
+notes/
+  synthesized_implications.md
+  names.md
+  <company>/
+    report_<company>_<date>.md
     supporting_analysis/
     reference_materials/
 ```
 
 ### Folder guidance
 
-#### `report_<investment>_<date>.md`
-The main investment memo.
+#### `notes/<company>/report_<company>_<date>.md`
 
-#### `supporting_analysis/`
-Anything created during analysis, for example:
-- spreadsheets or models
+The main investment memo for a company.
+
+#### `notes/<company>/supporting_analysis/`
+
+Artifacts created during the work, for example:
+
+- spreadsheets or valuation models
 - Python scripts
 - charts
 - decomposition tables
 - sensitivity analyses
 
-#### `reference_materials/`
-Documents used as inputs, for example:
+#### `notes/<company>/reference_materials/`
+
+Input documents used during analysis, for example:
+
 - 10-Ks / 10-Qs / annual reports
 - earnings decks
 - transcripts
@@ -63,9 +81,27 @@ Documents used as inputs, for example:
 - industry reports
 - press releases
 
+## Research standards
+
+Work in this repo should be:
+
+- **source-backed**: major claims should trace to filings, disclosures, reputable industry sources, or clearly labeled assumptions
+- **numerically consistent**: tables, forecasts, and valuation outputs should reconcile
+- **decision-useful**: the writeup should help an investor decide what to do
+- **clear about uncertainty**: reported facts, estimates, and judgment should stay distinct
+
+Practical rules:
+
+- prefer primary sources when possible
+- label internally estimated figures clearly
+- explain estimation methods when disclosures are incomplete
+- avoid false precision
+- separate structural changes from short-term noise
+
 ## Output expectations
 
-A standard report should cover:
+A standard investment memo should cover:
+
 - summary recommendation
 - simple business overview
 - detailed company and industry overview
@@ -77,20 +113,4 @@ A standard report should cover:
 - top price catalysts
 - footnotes and sources
 
-The exact required section structure is defined in `AGENTS.md`.
-
-## Research standards
-
-A good report in this repo should be:
-- **source-backed**: major claims should trace to filings, disclosures, reputable industry sources, or clearly labeled assumptions
-- **numerically consistent**: tables, forecasts, and valuation outputs should reconcile
-- **decision-useful**: the writeup should help an investor decide what to do
-- **clear about uncertainty**: separate reported facts from estimates and judgment
-
-A few practical rules:
-- prefer primary sources when possible
-- label internally estimated figures clearly
-- explain estimation methods when company disclosures are incomplete
-- avoid false precision
-- separate structural changes from short-term noise
-
+The detailed memo structure and behavior live in `AGENTS.md` and the individual skill definitions.
